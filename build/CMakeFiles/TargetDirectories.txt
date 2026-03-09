@@ -1,0 +1,4 @@
+C:/MY_REPO/EmbeddedCpp/build/CMakeFiles/app.dir
+C:/MY_REPO/EmbeddedCpp/build/CMakeFiles/tests.dir
+C:/MY_REPO/EmbeddedCpp/build/CMakeFiles/edit_cache.dir
+C:/MY_REPO/EmbeddedCpp/build/CMakeFiles/rebuild_cache.dir

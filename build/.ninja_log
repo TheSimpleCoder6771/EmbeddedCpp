@@ -1,0 +1,5 @@
+# ninja log v7
+8	122	7941241672151382	CMakeFiles/tests.dir/tests/test_main.cpp.obj	ba97239c4655ffca
+3	132	7941241672041300	CMakeFiles/app.dir/src/main.cpp.obj	9a86f767b979d8a7
+124	249	7941241673319833	tests.exe	f0713a8b36089fa4
+132	259	7941241673319833	app.exe	17fe07385c51c087
