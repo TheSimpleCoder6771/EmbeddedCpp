@@ -1,3 +1,7 @@
+#rm -rf build-wb55
+#cmake -S . -B build-wb55 -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/arm-none-eabi-gcc.cmake
+#cmake --build build-wb55
+
 cmake_minimum_required(VERSION 3.20)
 project(stm32wb55_app LANGUAGES C CXX ASM)
 
