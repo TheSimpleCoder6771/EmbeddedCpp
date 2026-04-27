@@ -23,15 +23,32 @@ set(MCPU_FLAGS
   -mfloat-abi=hard
 )
 
-# ---- Resolve startup/linker to absolute paths ----
-set(STARTUP_ABS "${CMAKE_SOURCE_DIR}/${STARTUP_FILE}")
-set(LD_ABS      "${CMAKE_SOURCE_DIR}/${LINKER_SCRIPT}")
+# ---- Resolve startup/linker to absolute paths (robust) ----
+# Works whether STARTUP_FILE/LINKER_SCRIPT are relative or absolute.
+get_filename_component(STARTUP_ABS "${STARTUP_FILE}" ABSOLUTE BASE_DIR "${CMAKE_SOURCE_DIR}")
+get_filename_component(LD_ABS      "${LINKER_SCRIPT}" ABSOLUTE BASE_DIR "${CMAKE_SOURCE_DIR}")
 
 if(NOT EXISTS "${STARTUP_ABS}")
-  message(FATAL_ERROR "Startup file not found: ${STARTUP_FILE}")
+  file(GLOB _STARTUP_CANDIDATES RELATIVE "${CMAKE_SOURCE_DIR}"
+    "startup/*.s" "startup/*.S" "startup/**/*.s" "startup/**/*.S"
+  )
+  message(FATAL_ERROR
+    "Startup file not found:\n  ${STARTUP_ABS}\n\n"
+    "You passed STARTUP_FILE='${STARTUP_FILE}'.\n"
+    "Startup files found under ./startup:\n  ${_STARTUP_CANDIDATES}\n\n"
+    "Fix by setting -DSTARTUP_FILE=<one of the above> (or update your preset)."
+  )
 endif()
+
 if(NOT EXISTS "${LD_ABS}")
-  message(FATAL_ERROR "Linker script not found: ${LINKER_SCRIPT}")
+  file(GLOB _LD_CANDIDATES RELATIVE "${CMAKE_SOURCE_DIR}"
+    "linkerfile/*.ld" "linkerfile/**/*.ld"
+  )
+  message(FATAL_ERROR
+    "Linker script not found:\n  ${LD_ABS}\n\n"
+    "You passed LINKER_SCRIPT='${LINKER_SCRIPT}'.\n"
+    "Linker scripts found under ./linkerfile:\n  ${_LD_CANDIDATES}"
+  )
 endif()
 
 # ---- Sources (you copied CubeWB content into src/ and driver/src/) ----
