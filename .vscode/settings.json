@@ -1,0 +1,4 @@
+{
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build-wb55/compile_commands.json",
+  "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
+}
