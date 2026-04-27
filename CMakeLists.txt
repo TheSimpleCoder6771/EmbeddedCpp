@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ---- Chip + startup + linker (edit defaults if your filenames differ) ----
 set(STM32_CHIP "STM32WB55xx" CACHE STRING "STM32 device macro")
-set(STARTUP_FILE "startup/startup_stm32wb55xx_cm4.s" CACHE FILEPATH "Startup .s/.S file")
+set(STARTUP_FILE "startup/startup_stm32wb55cgux.s" CACHE FILEPATH "Startup .s/.S file")
 set(LINKER_SCRIPT "linkerfile/STM32WB55CGUX_FLASH.ld" CACHE FILEPATH "Linker .ld file")
 
 # ---- IMPORTANT: CPU flags as a LIST (NOT one quoted string) ----
