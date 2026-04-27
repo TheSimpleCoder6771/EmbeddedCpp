@@ -1,0 +1,26 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "wb55-debug",
+      "displayName": "STM32WB55 Debug (Ninja)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-wb55",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/arm-none-eabi-gcc.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_MAKE_PROGRAM": "C:/msys64/ucrt64/bin/ninja.exe",
+        "STM32_CHIP": "STM32WB55xx",
+        "STARTUP_FILE": "startup/startup_stm32wb55cgux.s",
+        "LINKER_SCRIPT": "linkerfile/STM32WB55CGUX_FLASH.ld"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "wb55-debug",
+      "configurePreset": "wb55-debug"
+    }
+  ]
+}
