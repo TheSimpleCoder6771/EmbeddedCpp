@@ -16,11 +16,5 @@
         "LINKER_SCRIPT": "linkerfile/STM32WB55CGUX_FLASH.ld"
       }
     }
-  ],
-  "buildPresets": [
-    {
-      "name": "wb55-debug",
-      "configurePreset": "wb55-debug"
-    }
   ]
 }

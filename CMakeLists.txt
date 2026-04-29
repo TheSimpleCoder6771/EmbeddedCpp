@@ -92,14 +92,19 @@ target_include_directories(app.elf PRIVATE
 # ---- Defines ----
 target_compile_definitions(app.elf PRIVATE
   USE_HAL_DRIVER
+  USE_STM32WBXX_USB_DONGLE
+  CORE_CM4
+  DEBUG 
   ${STM32_CHIP}
 )
 
 # ---- Compile options ----
 target_compile_options(app.elf PRIVATE
   ${MCPU_FLAGS}
+  -g3
+  -O0
   -Wall -Wextra -Wpedantic
-  -ffunction-sections -fdata-sections
+  -ffunction-sections -fdata-sections -fstack-usage
   -ffreestanding -fno-builtin
   $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
   $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
@@ -111,15 +116,18 @@ target_link_options(app.elf PRIVATE
   -T${LD_ABS}
   -Wl,-Map=${CMAKE_BINARY_DIR}/app.map
   -Wl,--gc-sections
+  -lc 
+  -lm 
+  -static
   --specs=nano.specs
   --specs=nosys.specs
 )
 
 # ---- Post-build artifacts ----
 add_custom_command(TARGET app.elf POST_BUILD
-  COMMAND arm-none-eabi-size $<TARGET_FILE:app.elf>
-  COMMAND arm-none-eabi-objcopy -O ihex   $<TARGET_FILE:app.elf> ${CMAKE_BINARY_DIR}/app.hex
-  COMMAND arm-none-eabi-objcopy -O binary $<TARGET_FILE:app.elf> ${CMAKE_BINARY_DIR}/app.bin
+  COMMAND ${CMAKE_SIZE} $<TARGET_FILE:app.elf>
+  COMMAND ${CMAKE_OBJCOPY} -O ihex   $<TARGET_FILE:app.elf> ${CMAKE_BINARY_DIR}/app.hex
+  COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:app.elf> ${CMAKE_BINARY_DIR}/app.bin
   COMMENT "Generating app.hex/app.bin"
   VERBATIM
 )
