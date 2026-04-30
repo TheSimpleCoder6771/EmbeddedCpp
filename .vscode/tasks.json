@@ -5,17 +5,29 @@
       "label": "WB55: Configure (preset)",
       "type": "shell",
       "command": "C:/msys64/ucrt64/bin/cmake.exe",
-      "args": ["--preset", "wb55-debug"],
-      "options": { "cwd": "${workspaceFolder}" },
+      "args": [
+        "--preset",
+        "wb55-debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     },
     {
       "label": "WB55: Build",
       "type": "shell",
       "command": "C:/msys64/ucrt64/bin/cmake.exe",
-      "args": ["--build", "${workspaceFolder}/build-wb55"],
-      "dependsOn": ["WB55: Configure (preset)"],
-      "options": { "cwd": "${workspaceFolder}" },
+      "args": [
+        "--build",
+        "${workspaceFolder}/build-wb55"
+      ],
+      "dependsOn": [
+        "WB55: Configure (preset)"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     },
     {
@@ -23,11 +35,17 @@
       "type": "shell",
       "command": "openocd",
       "args": [
-        "-f", "${workspaceFolder}/openocd_wb55_dongle_stlinkv2.cfg",
-        "-c", "program ${workspaceFolder}/build-wb55/app.elf verify reset exit"
+        "-f",
+        "${workspaceFolder}/openocd_wb55.cfg",
+        "-c",
+        "program ${workspaceFolder}/build-wb55/app.elf verify reset exit"
       ],
-      "dependsOn": ["WB55: Build"],
-      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": [
+        "WB55: Build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": []
     }
   ]

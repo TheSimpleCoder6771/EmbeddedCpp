@@ -1,4 +1,10 @@
 {
   "C_Cpp.default.compileCommands": "${workspaceFolder}/build-wb55/compile_commands.json",
-  "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
+  "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe",
+  "cmake.cmakePath": "C:/msys64/ucrt64/bin/cmake.exe",
+
+  "cmake.configureOnOpen": false,
+  "cmake.configureOnEdit": false,
+  "cmake.automaticReconfigure": false,
+  "cmake.buildBeforeRun": false
 }
